@@ -45,9 +45,13 @@ public class Commands{
 							System.out.println("Do you want to add a dependent for " + employeeRecord.getEmployeeName()+ "? y or n ?" );
 							break;				
 				case 'n':
-							System.out.println("Employee record entry completed");
+							System.out.println("Employee record entry completed for " + employeeRecord.getEmployeeName()+ ":");
+							System.out.println("With dependents:");
+							for(Person p : employeeRecord.DependentList) {
+								System.out.println("    " + p.getFirstName() + " " + p.getLastName());
+							}
 							System.out.print("Cost of benefits to employee per pay period: ");
-							System.out.printf("$ %6.2f %n",CalcPay.getEmployeeCostPerCheck(employeeRecord));
+							System.out.printf("$ %6.2f %n%n",CalcPay.getEmployeeCostPerCheck(employeeRecord));
 							return;
 				default:			
 							//commandScanner.nextLine();
@@ -63,20 +67,37 @@ public class Commands{
 		employeeRecord.DependentList.add(person);
 	}
 	
-	
-	
 	public static void list() {
 		
 		for(EmployeeRecord s : Company.company) {
 			System.out.println("Employee: " + s.getEmployeeName());
-			System.out.println("Dependents of " + s.getEmployeeName());
+			System.out.println("Dependents of " + s.getEmployeeName() +":");
 				for(Person p : s.DependentList) {
 					System.out.println("    " + p.getFirstName() + " " + p.getLastName());
 				}
 				
 			System.out.print("Cost of benefits to employee per pay period: ");
-			System.out.printf("$ %6.2f %n",CalcPay.getEmployeeCostPerCheck(s));
+			System.out.printf("$ %6.2f %n%n",CalcPay.getEmployeeCostPerCheck(s));
 		}
+	}
+	
+	public static void week() {
+		double weeklyBenefitCost =0;
+		double weeklyWageCost =0;
+		
+		for(EmployeeRecord s : Company.company) {
+			weeklyBenefitCost+= CalcPay.getEmployeeCostPerCheck(s);
+			weeklyWageCost+= (s.getEmployeePerson().getPay());
+		}
+		System.out.printf("The total weekly benefit cost to all employees is: $ %8.2f %n%n", weeklyBenefitCost);
+		System.out.printf("The total weekly wage cost for all employees is: $ %8.2f %n%n", weeklyWageCost);
+	}
+	
+	public static void annual() {
+		System.out.println("annual test");
+		
 	}
 
 }
+
+

@@ -1,5 +1,4 @@
-package paylocity;
-
+package paylocity; 
 
 import java.util.Scanner;
 
@@ -30,10 +29,10 @@ public class PayApp {
 									Commands.list();
 									break;
 					case "week":
-									System.out.println("test week");
+									Commands.week();
 									break;
 					case "annual":	
-									System.out.println("test annual");
+									Commands.annual();
 									break;
 					case "help":	
 									printHelp();

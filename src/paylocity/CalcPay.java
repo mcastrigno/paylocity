@@ -7,7 +7,7 @@ package paylocity;
 public class CalcPay {
 	private static double employeeBenefitCost = 1000;
 	private static double dependentBenefitCost = 500;
-	private static double numCheckPerYear = 26;
+	public static double numCheckPerYear = 26; //should use getter/setter done for expediency  
 	private static double netDiscount = .9; //reflects a 10% discount
 	
 	private double annualCostEmployee= 0;
