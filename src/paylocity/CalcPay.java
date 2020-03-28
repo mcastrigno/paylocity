@@ -4,40 +4,69 @@ package paylocity;
  * It calculates pay for the company
  * 
  */
+/**
+ * @author Matthew Castrigno
+ *
+ */
 public class CalcPay {
-	private static double employeeBenefitCost = 1000;
-	private static double dependentBenefitCost = 500;
-	public static double numCheckPerYear = 26; //should use getter/setter done for expediency  
-	private static double netDiscount = .9; //reflects a 10% discount
-	
-	private double annualCostEmployee= 0;
-	private double annualCostDependent = 0;
-	//private int numEmpDiscount = 0;
-	
-	
+
+
+
 	public static double getEmployeeCostPerCheck(EmployeeRecord employeeRecord) {
 
-	 double biWeeklyCost=0;
-	 
+		double biWeeklyCost=0;
+		// super discount for anyone with a first or last name that starts with a or A
 		if((employeeRecord.getEmployeePerson().getFirstName().toUpperCase().charAt(0) == 'A') 
-			||(employeeRecord.getEmployeePerson().getLastName().toUpperCase().charAt(0) == 'A'))
+				||(employeeRecord.getEmployeePerson().getLastName().toUpperCase().charAt(0) == 'A'))
 		{
-				biWeeklyCost+= (employeeBenefitCost * netDiscount)/numCheckPerYear;
+			biWeeklyCost+= (Company.employeeBenefitCost * Company.netDiscount)/Company.numCheckPerYear;
 		}else {
-				biWeeklyCost+= (employeeBenefitCost)/numCheckPerYear;
+			biWeeklyCost+= (Company.employeeBenefitCost)/Company.numCheckPerYear;
 		}
 		for (Person p : employeeRecord.DependentList) {
 			if((p.getFirstName().toUpperCase().charAt(0) == 'A') 
-				||(p.getLastName().toUpperCase().charAt(0) == 'A'))
+					||(p.getLastName().toUpperCase().charAt(0) == 'A'))
 			{
-				biWeeklyCost+= (dependentBenefitCost * netDiscount)/numCheckPerYear;
+				biWeeklyCost+= (Company.dependentBenefitCost * Company.netDiscount)/Company.numCheckPerYear;
 			}else {
-				biWeeklyCost+= (dependentBenefitCost)/numCheckPerYear;
+				biWeeklyCost+= (Company.dependentBenefitCost)/Company.numCheckPerYear;
 			}
 		}
 		return biWeeklyCost;
 	}
 	
+	/**
+	 * 
+	 * fully implemented this would have a company/department as an argument
+	 * @return
+	 */
+	public static double getCompanyEmployeeCostPerYear() {
+		double annualEmployeeCost= 0;
+		for(EmployeeRecord s : Company.company) {
+			// just counting records but employees has different costs we could capture it here
+			annualEmployeeCost+=Company.employeeBenefitCost;
+			for(Person p : s.DependentList) {
+				annualEmployeeCost+=Company.dependentBenefitCost;
+			}
+		}
+		return annualEmployeeCost;
+	}
 	
+	/**
+	 * 
+	 * fully implemented this would have a company/department as an argument
+	 * @return
+	 */
+	public static double getCompanyCostPerYear() {
+		double annualCompanyCost =0;
+		for(EmployeeRecord s : Company.company) {
+			// just counting records but employees has different costs we could capture it here
+			annualCompanyCost+= (s.getEmployeePerson().getPay()) * Company.numCheckPerYear;
+			}
+		return annualCompanyCost;
+		}
+
+
+
 
 }
