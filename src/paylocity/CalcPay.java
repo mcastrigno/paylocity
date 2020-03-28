@@ -43,10 +43,21 @@ public class CalcPay {
 	public static double getCompanyEmployeeCostPerYear() {
 		double annualEmployeeCost= 0;
 		for(EmployeeRecord s : Company.company) {
-			// just counting records but employees has different costs we could capture it here
-			annualEmployeeCost+=Company.employeeBenefitCost;
-			for(Person p : s.DependentList) {
-				annualEmployeeCost+=Company.dependentBenefitCost;
+			if((s.getEmployeePerson().getFirstName().toUpperCase().charAt(0) == 'A') 
+					||(s.getEmployeePerson().getLastName().toUpperCase().charAt(0) == 'A'))
+			{
+				annualEmployeeCost+= Company.employeeBenefitCost * Company.netDiscount;
+			}else {
+				annualEmployeeCost+= Company.employeeBenefitCost;
+			}
+			for(Person p : s.DependentList) {			
+				if((p.getFirstName().toUpperCase().charAt(0) == 'A') 
+						||(p.getLastName().toUpperCase().charAt(0) == 'A'))
+				{
+					annualEmployeeCost+=Company.dependentBenefitCost * Company.netDiscount;
+				}else {
+					annualEmployeeCost+=Company.dependentBenefitCost;
+				}
 			}
 		}
 		return annualEmployeeCost;

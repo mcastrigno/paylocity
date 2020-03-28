@@ -83,7 +83,7 @@ public class Commands{
 		for(EmployeeRecord s : Company.company) {
 			System.out.println("Employee: " + s.getEmployeeName());
 			System.out.println("Dependents of " + s.getEmployeeName() +":");
-			for(Person p : s.DependentList) {
+			for(Person p : s.getDependentList()) {
 				System.out.println("    " + p.getFirstName() + " " + p.getLastName());
 			}
 

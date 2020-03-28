@@ -37,4 +37,8 @@ public class EmployeeRecord {
 	public void addDependent(Person person) {
 		DependentList.add(person);
 	}
+	public ArrayList<Person> getDependentList(){
+		return this.DependentList;
+	}
 }
+
