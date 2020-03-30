@@ -32,7 +32,7 @@ details a web application would entail.
 
 No persistence of data exists in the program as again time constraints dictated that be omitted.
 If I were to more fully develop this application that would be accomplished with a database such as
-mySQL. The application was however structured with objects that would map well into database records.
+mySQL and DAO classes. The application was however structured with objects that would map well into database records.
 
 ### PayApp.java (Main)
 The main is found in PayApp.java. It consists of a scanner to take in commands from the command line
