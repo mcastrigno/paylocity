@@ -25,7 +25,7 @@ Please implement an application based on these assumptions:
 
 ---
 ###  Application Description 
-I chose java as a language for this project as easily demonstrate OOP principles and is
+I chose java as the language for this project as easily demonstrates OOP principles and is
 widely used in industry. The user interface is a command line. This was chosen so the less than
 eight-hour time allotment could be spent on making a structured program and less on presentation 
 details a web application would entail.
@@ -41,16 +41,16 @@ as well as some help/error messages.
 ### Other Classes
 #### Person.java
 Person objects have names which are used to determine if a discount is applied. They also have a "type" of being
-a employee or dependent. This class could be extended to provide any number of attributes. Employee pay was put in 
+an employee or dependent. This class could be extended to provide any number of attributes. Employee pay was put in 
 here as an example.
 
 #### EmployeeRecord.java
-The employee record has the Person that is the employee as well as a list of dependent persons.
+The employee record has the Person that is the employee as well as a list of dependent Persons.
 
-#### Company.java
-The company class is provided as hook to expand the program to support multiple companies or departments. It 
-has no constructor as there are not multiple companies in this current implementation. Static values are used 
-for variables that would be company specific, such as benefit costs and pay period.
+#### SingleCompany.java
+This singleton object class is used to hold company specific values. In this problem there is only one company but 
+using this class allow for the program to be easily modified to handle multiple companies. It would provide instance 
+variables that would be company specific, such as benefit costs and pay period.
 
 #### Commands.java
 This class contains the logic to execute the various commands. 
